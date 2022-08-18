@@ -1,0 +1,52 @@
+server:
+  shutdown: graceful
+
+spring:
+  lifecycle:
+    timeout-per-shutdown-phase: 20s
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+#    properties:
+#      hibernate:
+#        format_sql: true
+  datasource:
+    hikari:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      jdbc-url: jdbc:mysql://localhost:33306/demo?serverTimezone=UTC&characterEncoding=UTF-8
+      username: demo-svc
+      password: demo-pass
+  flyway:
+    user: demo-svc
+    password: demo-pass
+    schemas: demo
+    url: jdbc:mysql://localhost:33306/demo?serverTimezone=UTC&characterEncoding=UTF-8
+    enabled: true
+
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+
+  # Redis
+  redis:
+    host: localhost
+    port: 6379
+
+  # Swagger
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher
+
+logging:
+  config: classpath:logback-local.xml
+#  level:
+#    org:
+#      hibernate:
+#        type:
+#          descriptor:
+#            sql: trace
+
+jwt:
+  secret: VlwEyVBsYt9V7zq57TejMnVUyzblYcfPQye08f7MGVA9XkHN
